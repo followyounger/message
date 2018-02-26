@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <link rel="stylesheet" href="{$Think.const.URL_CSS}common.css"/>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        var w,h,className;
+        function getSrceenWH(){
+            w = $(window).width();
+            h = $(window).height();
+            $('#dialogBg').width(w).height(h);
+        }
+
+        window.onresize = function(){
+            getSrceenWH();
+        }
+        $(window).resize();
+
+        $(function(){
+            getSrceenWH();
+            $('.box a').click(function(){
+                className = $(this).attr('class');
+                $('#dialogBg').fadeIn(300);
+                $('#dialog').removeAttr('class').addClass('animated '+className+'').fadeIn();
+            });
+
+            //¹Ø±Õµ¯´°
+            $('.claseDialogBtn').click(function(){
+                $('#dialogBg').fadeOut(300,function(){
+                    $('#dialog').addClass('bounceOutUp').fadeOut();
+                });
+            });
+        });
+    </script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+    <div>
+        <div>
+            <label>用户头像:</label>
+            <img src="{$userinfo['userimg']}" style="width: 90px;height: 90px;">
+        </div>
+        <div>
+            <label>用户ID:</label>
+            <input value="{$userinfo['userid']}" name="userid" type="text" readonly="readonly"/>
+        </div>
+        <div>
+            <label>用户名:</label>
+            <input value="{$userinfo['username']}" name="username" type="text" readonly="readonly"/>
+        </div>
+        <div>
+            <label>密 &nbsp; 码:</label>
+            <input value="{$userinfo['password']}" name="password" type="password" readonly="readonly" />
+            <div id="wrapper">
+                <div class="box">
+                    <div class="demo">
+                        <a href="javascript:;" class="bounceIn">修改密码</a>
+                    </div>
+                    <div id="dialogBg"></div>
+                    <div id="dialog" class="animated">
+                        <img class="dialogIco" width="50" height="50" src="{$Think.const.URL_IMG}ico.png" alt="" />
+                        <div class="dialogTop">
+                            <a href="javascript:;" class="claseDialogBtn">关闭</a>
+                        </div>
+                        <form action="{:url('changepassword')}" method="post">
+                            <ul class="editInfos">
+                                <li><label><font color="#ff0000">* </font>原密码<input type="text" name="oldpassword" required value="" class="ipt" /></label></li>
+                                <li><label><font color="#ff0000">* </font>新密码<input type="text" name="newpassword" required value="" class="ipt" /></label></li>
+                                <li><label><font color="#ff0000">* </font>确认<input type="text" name="confpassword" required value="" class="ipt" /></label></li>
+                                <li><input type="submit" value="提交" class="submitBtn" /></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+        </div>
+
+    </div>
+
+    </div>
+</body>
+</html>

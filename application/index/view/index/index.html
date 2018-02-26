@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>王朝阳留言板</title>
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Navbar Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{$Think.const.URL_BOOT}dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{$Think.const.URL_BOOT}assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="{$Think.const.URL_BOOT}assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{$Think.const.URL_BOOT}assets/js/ie-emulation-modes-warning.js"></script>
+    <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}h-ui.admin/css/style.css" />
+    <link href="{$Think.const.URL_CSS}navbar.css" rel="stylesheet">
+
+    <style type="text/css">
+        #button_login{
+            margin-left: 400px;
+            float: left;
+
+        }
+        #button_register{
+            float: left;
+        }
+        #button_fabiao{
+            margin-left: 700px;
+        }
+        .li_content{
+            margin-left: 150px;
+        }
+        p{
+            font-weight:normal;
+            color:red;
+        }
+        #content_id{
+            margin-left: 150px;
+            width:500px;
+            height: 200px;
+        }
+        .li_content_sub{
+            background-color: #ececec;
+            margin-left: 10px;
+            width: 400px;
+        }
+        .title_header{
+            margin-left: 700px;
+        }
+        .content{
+            margin-bottom: 10px;
+            margin-left: 200px;
+        }
+        /*.btn_huifu{*/
+            /*margin-left: 270px;*/
+        /*}*/
+
+        /*#huifu{display:none;}*/
+        .huifukuang_f{
+            width:400px;
+            height:80px;
+        }
+        .huifukuang_c{
+            width:380px;
+            height:50px;
+            margin-left: 20px;
+        }
+    </style>
+    <!--<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">-->
+    <!--&lt;!&ndash;<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">&ndash;&gt;-->
+</head>
+<body>
+
+
+    <div class="container">
+
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">王朝阳</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">关于我</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right dropDown dropDown_hover">
+                        {if condition="$userinfo['username'] neq null"}
+
+                           <li> <a href="#" class="dropDown_A">{$userinfo['username']} <i class="Hui-iconfont">&#xe6d5;</i></a></li>
+                            <ul class="dropDown-menu menu radius box-shadow" style="background-color: #7e8795">
+                                <li><img src="{$userinfo['userimg']}" style="width: 90px;height: 90px;"></li>
+                                <li style="font-style: normal"><a href="{:url('users/index')}" onClick="myselfinfo()">个人信息</a></li>
+                                <li><a href="{:url('users/login')}">切换账户</a></li>
+                                <li> <a href="{:url('loginout')}">退出</a></li>
+                            </ul>
+
+                        {else /}
+                            <li>
+                                <a href="{:url('login')}">登录 </a>
+                            </li>
+                            <li>
+                                <a href="{:url('register')}">注册 </a>
+                            </li>
+                        {/if}
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </nav>
+    </div>>
+<!-- Nav tabs -->
+
+
+
+    <!--<div class="title_header">-->
+            <!--<ul class="cl">-->
+                <!--<li class="dropDown dropDown_hover">-->
+                    <!--{if condition="$userinfo['username'] neq null"}-->
+                        <!--<a href="#" class="dropDown_A">{$userinfo['username']} <i class="Hui-iconfont">&#xe6d5;</i></a>-->
+                        <!--<ul class="dropDown-menu menu radius box-shadow">-->
+                            <!--<li><img src="{$userinfo['userimg']}" style="width: 90px;height: 90px;"></li>-->
+                            <!--<li><a href="{:url('users/index')}" onClick="myselfinfo()">个人信息</a></li>-->
+                            <!--<li><a href="{:url('users/login')}">切换账户</a></li>-->
+                            <!--<li> <a href="{:url('loginout')}">退出</a></li>-->
+                        <!--</ul>-->
+                    <!--{else /}-->
+                        <!--<a href="{:url('login')}"><button id="button_login">登录</button></a>-->
+                        <!--<a href="{:url('register')}"><button id="button_register">注册</button></a>-->
+                    <!--{/if}-->
+                <!--</li>-->
+            <!--</ul>-->
+    <!--</div>-->
+
+
+    <div class="content">
+        <div>
+            <form action="{:url('publish/publish')}" method="post">
+                <textarea id="content_id" name="content" placeholder="吐槽、鼓励，想说啥就说啥！"></textarea>
+                <div>
+                    <button id="button_fabiao" title="发表" type="">发表评论</button>
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <ul>
+                {foreach name="infofather" item="vo"}
+                    {if condition="$vo['parent_id']==0"}
+                        <li class="li_content">
+                            <div class="li_content_f">
+                                <p>{$vo.username}:{$vo.content}</p>
+                                <button class="btn_huifu btn_f" name="huifu" type="submit" title="回复" onclick='getid("{$vo.userid}")'>回复</button>
+                            </div>
+
+                                {foreach name="infochildren" item="vv"}
+                                         {if condition="$vv['parent_id']==$vo['userid']"}
+                                            <div class="li_content_sub">
+                                                {foreach name="username" item="ll"}
+                                                    {if condition="$vv['huifu_id'] eq $ll['userid']"}
+                                                    <p>{$vv.username}回复{$ll.username}: {$vv.content}</p>
+                                                        <button onClick='message_del(this,"{$vv.userid}","{$vv.huifu_id}","{$vv.parent_id}")' href="javascript:;" title="删除">删除</button>
+                                                    <button class="btn_huifu btn_c" name="huifu" type="submit" title="回复" onclick='getid("{$vv.userid}")'>回复</button>
+                                                {/if}
+                                                {/foreach}
+                                            </div>
+                                        {/if}
+                                {/foreach}
+                        </li>
+                    {/if}
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+
+
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="{$Think.const.URL_HUI}lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{$Think.const.URL_HUI}lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="{$Think.const.URL_HUI}h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.const.URL_HUI}h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="{$Think.const.URL_HUI}lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="{$Think.const.URL_HUI}lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{$Think.const.URL_HUI}lib/laypage/1.2/laypage.js"></script>
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="{$Think.const.URL_HUI}lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript">
+    /*个人信息*/
+    function myselfinfo(){
+        layer.open({
+            type: 1,
+            area: ['300px','200px'],
+            fix: false, //不固定
+            maxmin: true,
+            shade:0.4,
+            title: '查看信息',
+            content: '<div>管理员信息</div>'
+        });
+    }
+
+    /*留言-删除*/
+    function message_del(obj,userid,huifuid,parent){
+        layer.confirm('确认要删除吗？',function(index){
+
+            $.ajax({
+                type: 'POST',
+                url: 'messageDel?userid='+userid+'&huifu='+huifuid+'&parent='+parent,
+                dataType: 'json',
+                success: function(data){
+                    console.log(1111111111);
+                    layer.msg('已删除!',{icon:1,time:1000});
+                },
+                error:function(data) {
+                    console.log(222);
+                    console.log(data.msg);
+                },
+            });
+        });
+    }
+
+    var ids = null;
+
+    $('.btn_f').each(function(x){
+        $(this).click(function(){
+            if(!$('#huifu').length){
+                let str = '<form id="huifu"  action="{:url(\'publish/publish\')}" method="post"> <input type="hidden" value="'+ids+'" name="huifu_id" /><textarea class="huifukuang_f" name="content_f"></textarea><button class="huifu_f">评论</button></form>';
+                $(str).insertAfter($('.li_content_f').eq(x));
+                addClick();
+            }else{
+                $('#huifu').remove();
+            }
+        })
+    });
+
+
+    $('.btn_c').each(function(x){
+        $(this).click(function(){
+            if (!$('#huifu').length) {
+                let str = '<form id="huifu"  action="{:url(\'publish/publish\')}" method="post"><input type="hidden" value="'+ids+'" name="huifu_id" /> <textarea class="huifukuang_c" name="content_c"></textarea><button class="sub_huifu">评论</button></form>';
+                $(str).insertAfter($('.li_content_sub').eq(x));
+                addClick();
+            } else {
+                $('#huifu').remove();
+            }
+        })
+    });
+
+    var addClick = function () {
+        $('.sub_huifu').click(function(){
+            document.getElementById('huifu').submit(); //验证成功进行表单提交
+            $('#huifu').remove();
+        })
+    }
+    var getid = function (iids) {
+        ids = iids;
+    }
+
+    //使按钮能够使用。
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
+</script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+    <!--<script>window.jQuery || document.write('<script src="{$Think.const.URL_BOOT}assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+    <script src="{$Think.const.URL_BOOT}dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{$Think.const.URL_BOOT}assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

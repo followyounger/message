@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+
+
+
+
+    <div>
+        <form action="{:url('register')}" method="post" enctype="multipart/form-data">
+            <tr>
+                <td style="width:13%; text-align: right;"><label for="User_username" class="required">&nbsp; &nbsp; 用户名
+                    <span class="required">*</span></label>
+                </td>
+                <td style="width:87%;">
+                <input class="inputBg" size="25" name="username" id="User_username" type="text" value="" /><br>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:13%; text-align: right;"><label for="User_username" class="required">&nbsp; &nbsp; 密&nbsp; 码
+                    <span class="required">*</span></label>&nbsp;
+                </td>
+                <td style="width:87%;">
+                    <input type="password" name="password" /><br>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="width:13%; text-align: right;"><label for="User_username" class="required">确认密码
+                    <span class="required">*</span></label>
+                </td>
+                <td style="width:87%;">
+                    <input type="password" name="repassword" /><br>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:13%; text-align: right;"><label for="User_username" class="required">上传头像
+                    <span class="required">*</span></label>
+                </td>
+                <td>
+                    <input type="file" name="image" />
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <button type="submit">注册</button>
+            </tr>
+        </form>
+
+    </div>
+
+</body>
+
+
+
+</html>
