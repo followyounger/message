@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
+date_default_timezone_set("Asia/Shanghai");
 // [ 应用入口文件 ]
 
 // 定义应用目录
@@ -21,6 +21,8 @@ define('URL_IMG',  '/../static/images/');
 define('URL_HUI',  '/../static/hui/');
 
 define('URL_BOOT', '/../static/bootstrap/');
+
+define('URL_UED', '/../static/uediter/');
 
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';

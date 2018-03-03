@@ -28,6 +28,11 @@
     <!--[if lt IE 9]>
     <script src="{$Think.const.URL_BOOT}assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{$Think.const.URL_BOOT}assets/js/ie-emulation-modes-warning.js"></script>
+
+    <script src="{$Think.const.URL_UED}ueditor.config.js"></script>
+    <script src="{$Think.const.URL_UED}ueditor.all.min.js"></script>
+    <script src="{$Think.const.URL_UED}lang/zh-cn/zh-cn.js"></script>
+
     <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}h-ui.admin/css/H-ui.admin.css" />
     <link rel="stylesheet" type="text/css" href="{$Think.const.URL_HUI}lib/Hui-iconfont/1.0.8/iconfont.css" />
@@ -163,7 +168,7 @@
     <div class="content">
         <div>
             <form action="{:url('publish/publish')}" method="post">
-                <textarea id="content_id" name="content" placeholder="吐槽、鼓励，想说啥就说啥！"></textarea>
+                <textarea id="content" name="content" placeholder="吐槽、鼓励，想说啥就说啥！"></textarea>
                 <div>
                     <button id="button_fabiao" title="发表" type="">发表评论</button>
                 </div>
@@ -251,7 +256,7 @@
     $('.btn_f').each(function(x){
         $(this).click(function(){
             if(!$('#huifu').length){
-                let str = '<form id="huifu"  action="{:url(\'publish/publish\')}" method="post"> <input type="hidden" value="'+ids+'" name="huifu_id" /><textarea class="huifukuang_f" name="content_f"></textarea><button class="huifu_f">评论</button></form>';
+                let str = '<form id="huifu"  action="{:url(\'publish/huifu\')}" method="post"> <input type="hidden" value="'+ids+'" name="huifu_id" /><textarea class="huifukuang_f" name="content_f"></textarea><button class="huifu_f">评论</button></form>';
                 $(str).insertAfter($('.li_content_f').eq(x));
                 addClick();
             }else{
@@ -264,7 +269,7 @@
     $('.btn_c').each(function(x){
         $(this).click(function(){
             if (!$('#huifu').length) {
-                let str = '<form id="huifu"  action="{:url(\'publish/publish\')}" method="post"><input type="hidden" value="'+ids+'" name="huifu_id" /> <textarea class="huifukuang_c" name="content_c"></textarea><button class="sub_huifu">评论</button></form>';
+                let str = '<form id="huifu"  action="{:url(\'publish/huifu\')}" method="post"><input type="hidden" value="'+ids+'" name="huifu_id" /> <textarea class="huifukuang_c" name="content_c"></textarea><button class="sub_huifu">评论</button></form>';
                 $(str).insertAfter($('.li_content_sub').eq(x));
                 addClick();
             } else {
@@ -295,5 +300,18 @@
     <script src="{$Think.const.URL_BOOT}dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{$Think.const.URL_BOOT}assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script type="text/javascript">
+
+        //实例化编辑器
+
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+
+        UE.getEditor('content',{initialFrameWidth:800,initialFrameHeight:400,});
+
+    </script>
+
+
+
 </body>
 </html>

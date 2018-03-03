@@ -12,6 +12,15 @@
     <div>
         <form action="{:url('register')}" method="post" enctype="multipart/form-data">
             <tr>
+                <td style="width:13%; text-align: right;"><label for="user_email" class="required">&nbsp; &nbsp;  邮  箱
+                    <span class="required">*</span></label>
+                </td>
+                <td style="width:87%;">
+                    <input class="inputBg" size="25" name="user_email" id="User_email" type="email" value="" /><br>
+                </td>
+            </tr>
+
+            <tr>
                 <td style="width:13%; text-align: right;"><label for="User_username" class="required">&nbsp; &nbsp; 用户名
                     <span class="required">*</span></label>
                 </td>

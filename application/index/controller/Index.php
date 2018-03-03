@@ -1,12 +1,18 @@
 <?php
-namespace app\index\controller;
 
+
+namespace app\index\controller;
+//namespace PHPMailer\PHPMailer;
 use think\Controller;
 use think\Db;
 use think\Loader;
 use think\Session;
 use think\Request;
 use think\captcha;
+//use app\index\validate\UserValidate;
+use think\Validate;
+
+
 
 
 class Index extends Controller
@@ -25,6 +31,23 @@ class Index extends Controller
 
         $username = Db::table('users')->select();
 
+
+
+
+
+
+        foreach ($infofather as $key=> $val){
+            $infofather[$key]['create_time'] = date('Y-m-d H:i:s',strtotime( $infofather[$key]['create_time']));
+        }
+        foreach ($infochildren as $key=> $val){
+            $infochildren[$key]['create_time'] = date('Y-m-d H:i:s',strtotime( $infochildren[$key]['create_time']));
+        }
+
+//        dump($infochildren);
+//        dump($infofather);
+
+//        exit;
+//        $infochildrenther['create_time'] = date('Y-m-d H:i:s',strtotime($infochildren['create_time']));
         $this->assign('username',$username);
         $this->assign('infofather',$infofather);
         $this->assign('infochildren',$infochildren);
@@ -33,8 +56,20 @@ class Index extends Controller
     public function login(){
         if($_POST){
             $i = input('post.');
-//            var_dump($i);
-//            exit();
+
+            $ValiInfo = [
+                'name'=>$i['username'],
+                'email'=>$i['password']
+            ];
+
+            $validate = new UserValidate();
+//            $validate->check($ValiInfo);
+
+            if(!$validate->check($ValiInfo)){
+                dump($validate->getError());
+            }
+
+
             if(!captcha_check($i['captcha'])){
 
                 $this->error('验证码错误');
@@ -73,10 +108,29 @@ class Index extends Controller
 //        return $this->fetch();
 //
 
+//        $email = new PHPMailer();
 
         if(request()->isPost()){
             $data = input('post.');
-//            dump($data);
+            $ValiInfo = [
+                'username'=>$data['username'],
+                'password'=>$data['password'],
+                'email' => $data['user_email']
+            ];
+            $rule = [
+                    ['username','require|max:25','名称必须|名称最多不能超过25个字符'],
+                    ['password','require','密码是必须的'],
+                    ['email','email','邮箱格式错误']
+             ];
+
+            $validate = new Validate($rule);
+            $result = $validate->check($ValiInfo);
+
+            if(!$result){
+                echo $validate->getError();
+            }
+//
+//            echo 1;
 //            exit;
             if(!isset($data['username'])){
                 return $this->error('用户名不能为空，请重新输入');
@@ -87,22 +141,29 @@ class Index extends Controller
             if ($data['password']!=$data['repassword']){
                 return $this->error('两次输入密码必须相同，请重新输入');
             }else{
+
                 $file = request()->file('image');
-                $info = $file->validate((['ext'=>'jpg,png,gif']))->move(ROOT_PATH . 'public' . DS . 'uploads');
+                if (!empty($file)){
+                    $info = $file->validate((['ext'=>'jpg,png,gif']))->move(ROOT_PATH . 'public' . DS . 'uploads');
 //                var_dump($info);
 //                exit();
-                $image = $info->getSaveName();
+                    $image = $info->getSaveName();
 
-                $image = '/uploads/'.str_replace('\\','/',$image);
+                    $image = '/uploads/'.str_replace('\\','/',$image);
+                }
 //                var_dump($image);
 //                exit();
+//                $image = !empty($image)?$image:NULL;
                 $user = Db::table('users')->insert([
                     'username' => $_POST['username'],
                     'password' => md5($_POST['password']),
-                    'userimg' => $image
+                    'email' => $data['user_email'],
+                    'userimg' => !empty($image)?$image:NULL
                 ]);
+
+                $res = \PHPMailer\PHPMailer\sendEmail([['user_email'=>$data['user_email'],'content'=>'资源鸟，让一切变得简单，加qq群 623918245 畅聊']]);
                 if ($user){
-                    return $this->success('注册成功','index');
+                    return $this->success('注册成功,请检查邮箱','index');
                 }else{
                     return $this->error('注册失败');
                 }
